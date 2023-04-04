@@ -4,9 +4,9 @@ rule OLE2_AutoOpen_Reversed_Payload
 		description = "Detects suspiciously reversed payloads in OLE2 objects with auto-open macros"
 		author = "marcin@ulikowski.pl"
 		date = "2021-12-01"
+		modified = "2023-04-04"
 
 	strings:
-		$magic = { d0 cf 11 e0 a1 b1 1a e1 }
 		$auto_open = /(auto|document|workbook)_?(open|close)/ wide ascii nocase
 		$http = /\/\/:s?ptth/ wide ascii
 		$programdata = /\\ataDmargorP\\\\?:C/ wide ascii nocase
@@ -14,7 +14,7 @@ rule OLE2_AutoOpen_Reversed_Payload
 
 	condition:
 		filesize < 1MB
-		and $magic at 0
+		and uint32be(0) == 0xd0cf11e0
 		and $auto_open
 		and any of ($http, $programdata, $windows)
 }
