@@ -4,7 +4,7 @@ rule Outlook_CVE_2023_23397_Exploit
 		description = "Detects Outlook meeting/appointment/task files with ReminderSoundFile property set to UNC path"
 		author = "marcin@ulikowski.pl"
 		date = "2023-03-16"
-		modified = "2023-03-22"
+		modified = "2023-04-20"
 		hash1 = "52dbaf64ce1a5cd1db9a9d385f8204e5f665ca53a3d904033bf1a10369490646"
 		hash2 = "582442ee950d546744f2fa078adb005853a453e9c7f48c6c770e6322a888c2cf"
 		hash3 = "078b5023cae7bd784a84ec4ee8df305ee7825025265bf2ddc1f5238c3e432f5f"
@@ -17,7 +17,7 @@ rule Outlook_CVE_2023_23397_Exploit
 		$psetid_common = { 08 20 06 00 00 00 00 00 c0 00 00 00 00 00 00 46 }
 		$psetid_appointment = { 02 20 06 00 00 00 00 00 c0 00 00 00 00 00 00 46 }
 		$psetid_task = { 03 20 06 00 00 00 00 00 c0 00 00 00 00 00 00 46 }
-		$unc = /\\\\\w[\w.]{6}/ wide ascii
+		$unc = /\\\\[a-z1-9][a-z0-9.]{6}/ wide ascii
 
 	condition:
 		filesize < 1MB and
