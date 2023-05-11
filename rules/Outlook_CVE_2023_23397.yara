@@ -17,7 +17,7 @@ rule Outlook_CVE_2023_23397_Exploit
 		$psetid_common = { 08 20 06 00 00 00 00 00 c0 00 00 00 00 00 00 46 }
 		$psetid_appointment = { 02 20 06 00 00 00 00 00 c0 00 00 00 00 00 00 46 }
 		$psetid_task = { 03 20 06 00 00 00 00 00 c0 00 00 00 00 00 00 46 }
-		$unc = /\\\\[a-z1-9][a-z0-9.]{6}/ wide ascii
+		$unc = /\\\\([a-z1-9][a-z0-9.]{6}|\.\\UNC\\\\)/ wide ascii
 
 	condition:
 		filesize < 1MB and
