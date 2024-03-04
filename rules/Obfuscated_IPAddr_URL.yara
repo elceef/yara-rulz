@@ -10,7 +10,7 @@ rule Obfuscated_IP_Address_in_URL
 		$ = /="?http:\/\/0[0-7]{1,3}\.0[0-7]{1,3}\.0[0-7]{1,3}\.0[0-7]{1,3}\.?\// nocase ascii wide
 		$ = /="?http:\/\/0x[0-9a-f]{8}\.?\// nocase ascii wide
 		$ = /="?http:\/\/0x[0-9a-f]{2}\.0x[0-9a-f]{2}\.0x[0-9a-f]{2}\.0x[0-9a-f]{2}\.?\// nocase ascii wide
-		$ = /="?http:\/\/[0-9]{8-10}\.?\// nocase ascii wide
+		$ = /="?http:\/\/[0-9]{8,10}\.?\// nocase ascii wide
 
 	condition:
 		any of them
